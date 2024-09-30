@@ -32,11 +32,13 @@ st.title("Community Call Transcription and Summarization")
 uploaded_file = st.file_uploader("Choose an audio file", type=['mp3', 'wav'])
 
 if uploaded_file is not None:
-    # Save the uploaded file
-    with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    # Create the uploads directory if it doesn't exist
+    os.makedirs("uploads", exist_ok=True)
     
+    # Save the uploaded file
     filepath = os.path.join("uploads", uploaded_file.name)
+    with open(filepath, "wb") as f:
+        f.write(uploaded_file.getbuffer())
     
     with st.spinner("Transcribing audio..."):
         results = model.transcribe(filepath)
