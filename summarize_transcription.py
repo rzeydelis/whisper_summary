@@ -1,6 +1,6 @@
 import ollama
 
-def load_chat_model(self, content, model="deepseek-r1"):
+def summarize_transcription(content, model="deepseek-r1"):
     response = ollama.chat(
         model=model,
         messages=[
@@ -8,5 +8,4 @@ def load_chat_model(self, content, model="deepseek-r1"):
         ]
     )
     return response['message']['content']
-
 
